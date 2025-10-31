@@ -1,0 +1,779 @@
+﻿<Window
+    x:Class="wpf.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ComboType="clr-namespace:Data_Access;assembly=Data_Access"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="BookShop"
+    Width="1200"
+    Height="900"
+    Background="#08091c"
+    Foreground="Black"
+    Icon="resources/bookshop2.png"
+    WindowState="Maximized"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="RadioButton">
+            <Setter Property="Background" Value="#08091c" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="BorderBrush" Value="#08091c" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter
+                                Margin="60,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#E91E63" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="#E91E63" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="FontWeight" Value="Medium" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="ToolTip" Value="Selection" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonHStyle" TargetType="Button">
+            <Setter Property="Background" Value="#08091c" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="BorderBrush" Value="#08091c" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter
+                                Margin="60,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#E91E63" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonAddStyle" TargetType="Button">
+            <Setter Property="Background" Value="#E91E63" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="BorderBrush" Value="#08091c" />
+            <Setter Property="BorderThickness" Value="1" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#08091c" />
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect
+                                            BlurRadius="10"
+                                            RenderingBias="Quality"
+                                            ShadowDepth="-10"
+                                            Color="#E91E63" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Border
+            Name="HomePanel"
+            Grid.Column="0"
+            Margin="2,30,2,2"
+            Background="#181929"
+            Visibility="Visible">
+            <Grid
+                Margin="0,30,2,2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#181929">
+                <Image
+                    Width="260"
+                    Height="300"
+                    Margin="80,60,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Source="resources/Logo.png" />
+                <Label
+                    Height="74"
+                    Margin="0,0,0,200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Arial"
+                    FontSize="70"
+                    FontWeight="Bold"
+                    Foreground="#E91E63">
+                    Book Store
+                </Label>
+                <Label
+                    Height="36"
+                    Margin="0,0,0,80"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center"
+                    FontFamily="Arial"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="#FFFFFF">
+                    Demo Application For BookShop
+                </Label>
+                <!--<Separator
+                    Grid.Row="1"
+                    Height="1"
+                    Margin="40,0,40,135"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    Background="White" />-->
+
+                <StackPanel
+                    Margin="0,0,0,55"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Width="21"
+                        Height="20"
+                        Margin="0,0,10,0">
+                        <Hyperlink NavigateUri="https://www.instagram.com/reza.akbarpourr/" RequestNavigate="Hyperlink_RequestNavigate">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Center"
+                                Source="resources/instagram.png" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock
+                        Width="21"
+                        Height="20"
+                        Margin="10,0,0,0">
+                        <Hyperlink NavigateUri="https://t.me/REZA_akT" RequestNavigate="Hyperlink_RequestNavigate">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Center"
+                                Source="resources/telegram.png" />
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                <Label
+                    Margin="0,0,0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Foreground="#E91E63">
+                    Copyright © 2024 AMA Tech Co.
+                </Label>
+
+            </Grid>
+        </Border>
+        <Border
+            x:Name="EmployeesPanel"
+            Grid.Column="0"
+            Margin="0,30,2,2"
+            Background="#181929"
+            Visibility="Collapsed">
+            <Grid Margin="3,0,-4,0" Background="#181929">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <ListView
+                    x:Name="EmployeeListView"
+                    Grid.Row="0"
+                    Margin="20,20,25,0"
+                    Background="White"
+                    Foreground="Black"
+                    SelectionChanged="EmployeeListViewSelectionChange">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="FirstName" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding FirstName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="LastName" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LastName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="PhoneNumber" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding PhoneNumber}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Address" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Address}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="BaseSalary" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding BaseSalary}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Department" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Department}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Opertion" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                Width="40"
+                                                Height="25"
+                                                Margin="3,3,4,3"
+                                                Background="#E92E50"
+                                                Click="btnDeletemployee_Click"
+                                                CommandParameter="{Binding}"
+                                                Content="Delete"
+                                                FontSize="12"
+                                                Style="{StaticResource ButtonAddStyle}" />
+                                            <Button
+                                                Width="40"
+                                                Height="25"
+                                                Margin="3,3,4,3"
+                                                Background="#181929"
+                                                Click="Employee_edit"
+                                                CommandParameter="{Binding}"
+                                                Content="Edit"
+                                                FontSize="12"
+                                                Style="{StaticResource ButtonAddStyle}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <WrapPanel Grid.Row="1" Margin="20">
+                    <Label
+                        Margin="10"
+                        Content="Detailed Info:"
+                        FontWeight="Bold"
+                        Foreground="White" />
+                    <Label
+                        x:Name="EmployeeLabel"
+                        Margin="2,10"
+                        Content="---"
+                        Foreground="White" />
+                </WrapPanel>
+
+                <StackPanel
+                    Grid.Row="2"
+                    Height="100"
+                    Margin="184,157,164,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="btnAddemployee"
+                        Width="150 "
+                        Height="50"
+                        Click="btnAddemployee_Click"
+                        Content="Add Employee"
+                        FontSize="20"
+                        Style="{StaticResource ButtonAddStyle}" />
+                    <!--<Button Margin="20" Height="50" Width="150 " FontSize="26" Background="Salmon" x:Name="btnDeletemployee" Click="btnDeletemployee_Click" Content="Delete"/>
+                    <Button Margin="20" Height="50" Width="150 " FontSize="27" Background="LightSkyBlue" x:Name="btnEditemployee" Click="btnEditemployee_Click" Content="Edit"/>-->
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border
+            Name="CustomersPanel"
+            Grid.Column="0"
+            Margin="0,30,2,2"
+            Background="#08091c"
+            Visibility="Collapsed">
+            <Grid Margin="3,0,-4,0" Background="#181929">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <ListView
+                    x:Name="CustomerListView"
+                    Grid.Row="0"
+                    Margin="20,20,25,0"
+                    Background="White"
+                    Foreground="Black"
+                    SelectionChanged="CustomerListViewSelectionChange">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="FirstName" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding FirstName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="LastName" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LastName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="PhoneNumber" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding PhoneNumber}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Address" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Address}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Opertion" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                Width="40"
+                                                Height="25"
+                                                Margin="3,3,4,3"
+                                                Background="#E92E50"
+                                                Click="btnDeleteCustomer_Click"
+                                                CommandParameter="{Binding}"
+                                                Content="Delete"
+                                                FontSize="12"
+                                                Style="{StaticResource ButtonAddStyle}" />
+                                            <Button
+                                                Width="40"
+                                                Height="25"
+                                                Margin="3,3,4,3"
+                                                Background="#181929"
+                                                Click="customer_edit"
+                                                CommandParameter="{Binding}"
+                                                Content="Edit"
+                                                FontSize="12"
+                                                Style="{StaticResource ButtonAddStyle}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <WrapPanel Grid.Row="1" Margin="20">
+                    <Label
+                        Margin="10"
+                        FontWeight="Bold"
+                        Foreground="White">
+                        Detailed Info:
+                    </Label>
+                    <Label
+                        Name="CustomerLabel"
+                        Margin="2,10"
+                        Content="---"
+                        Foreground="White" />
+                </WrapPanel>
+                <StackPanel
+                    Grid.Row="2"
+                    Height="100"
+                    Margin="184,157,164,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        Name="btnAddCustomer"
+                        Width="150 "
+                        Height="50"
+                        Click="btnAddCustomer_Click"
+                        FontSize="20"
+                        Style="{StaticResource ButtonAddStyle}">
+                        Add Customer
+                    </Button>
+                    <!--<button margin="20" height="50" width="150 " fontsize="26" background="salmon" name="btndeletecustomer" click="btndeletecustomer_click">delete</button>
+                    <button margin="20" height="50" width="150 " fontsize="27" background="lightskyblue" name="btneditcustomers" click="btneditcustomers_click">edit</button>-->
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border
+            Name="ProductsPanel"
+            Grid.Column="0"
+            Margin="0,30,2,2"
+            Background="#08091c"
+            Visibility="Collapsed">
+            <Grid Margin="3,0,-4,0" Background="#181929">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <ListView
+                    x:Name="ProductListView"
+                    Grid.Row="0"
+                    Margin="20,20,25,0"
+                    Background="White"
+                    Foreground="Black"
+                    SelectionChanged="ProductListViewSelectionChange">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Name" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Author" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Author}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Price" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Price}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="AvailableCount" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding AvailableCount}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Opertion" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                Width="40"
+                                                Height="25"
+                                                Margin="3,3,4,3"
+                                                Background="#E92E50"
+                                                Click="btnDeleteProduct_Click"
+                                                CommandParameter="{Binding}"
+                                                Content="Delete"
+                                                FontSize="12"
+                                                Style="{StaticResource ButtonAddStyle}" />
+                                            <Button
+                                                Width="40"
+                                                Height="25"
+                                                Margin="3,3,4,3"
+                                                Background="#181929"
+                                                Click="product_edit"
+                                                CommandParameter="{Binding}"
+                                                Content="Edit"
+                                                FontSize="12"
+                                                Style="{StaticResource ButtonAddStyle}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <WrapPanel Grid.Row="1" Margin="20">
+                    <Label
+                        Margin="10"
+                        FontWeight="Bold"
+                        Foreground="White">
+                        Detailed Info:
+                    </Label>
+                    <Label
+                        Name="ProductLabel"
+                        Margin="2,10"
+                        Content="---"
+                        Foreground="White" />
+                </WrapPanel>
+                <StackPanel
+                    Grid.Row="2"
+                    Height="100"
+                    Margin="184,157,164,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="btnAddProduct"
+                        Width="150 "
+                        Height="50"
+                        Click="btnAddProduct_Click"
+                        Content="Add Product"
+                        FontSize="20"
+                        Style="{StaticResource ButtonAddStyle}" />
+                    <!--<Button Margin="20" Height="50" Width="150 " FontSize="26" Background="Salmon" Name="btnDeleteProduct" Click="btnDeleteProduct_Click">Delete</Button>
+                    <Button Margin="20" Height="50" Width="150 " FontSize="27" Background="LightSkyBlue" Name="btnEditProduct" Click="btnEditProduct_Click">Edit</Button>-->
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border
+            Grid.Column="1"
+            Width="260"
+            Margin="2"
+            HorizontalAlignment="Center"
+            Background="#08091c">
+            <StackPanel Background="red">
+                <Image
+                    Width="200"
+                    Height="150"
+                    Margin="10,40,10,30"
+                    Source="resources/Logo.png" />
+
+                <RadioButton
+                    Name="btnHome"
+                    Margin="20,40,20,2"
+                    Click="btnHome_Click"
+                    Style="{StaticResource ButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image
+                            Width="20"
+                            Height="20"
+                            Margin="0,0,10,0"
+                            Source="resources/home.png" />
+                        <TextBlock VerticalAlignment="Center" Text="Home" />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton
+                    Name="btnEmployees"
+                    Margin="20,10,20,2"
+                    Click="btnEmployees_Click"
+                    Style="{StaticResource ButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image
+                            Width="20"
+                            Height="20"
+                            Margin="0,0,10,0"
+                            Source="resources/employee.png" />
+                        <TextBlock VerticalAlignment="Center" Text="Employees" />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton
+                    Name="btnCustomers"
+                    Margin="20,10,20,2"
+                    Click="btnCustomers_Click"
+                    Style="{StaticResource ButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image
+                            Width="20"
+                            Height="20"
+                            Margin="0,0,10,0"
+                            Source="resources/customer.png" />
+                        <TextBlock VerticalAlignment="Center" Text="Customers" />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton
+                    Name="btnProducts"
+                    Margin="20,10,20,2"
+                    Click="btnProducts_Click"
+                    Style="{StaticResource ButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image
+                            Width="20"
+                            Height="20"
+                            Margin="0,0,10,0"
+                            Source="resources/product.png" />
+                        <TextBlock VerticalAlignment="Center" Text="Products" />
+                    </StackPanel>
+                </RadioButton>
+
+                <StackPanel VerticalAlignment="Bottom" Background="Blue">
+                    <Separator
+                        Height="1"
+                        Margin="40,285,40,0"
+                        VerticalAlignment="Bottom"
+                        Background="White" />
+                    <RadioButton
+                        Name="btnExit"
+                        Margin="0,40,1,1"
+                        HorizontalAlignment="Center"
+                        Click="btnExit_Click"
+                        Style="{StaticResource ButtonStyle}">
+                        <StackPanel Width="137" Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,10,0"
+                                HorizontalAlignment="Left"
+                                Source="resources/exit.png" />
+                            <TextBlock VerticalAlignment="Center" Text="Exit" />
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
