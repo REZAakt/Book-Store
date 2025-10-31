@@ -211,11 +211,12 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Foreground="#E91E63">
-                    Copyright © 2024 AMA Tech Co.
+                    Copyright © 2025 Reza Akbarpour / Mohammad Allahgholipour
                 </Label>
 
             </Grid>
         </Border>
+
         <Border
             x:Name="EmployeesPanel"
             Grid.Column="0"
@@ -683,7 +684,8 @@
             Margin="2"
             HorizontalAlignment="Center"
             Background="#08091c">
-            <StackPanel Background="red">
+            <StackPanel>
+
                 <Image
                     Width="200"
                     Height="150"
@@ -750,7 +752,7 @@
                     </StackPanel>
                 </RadioButton>
 
-                <StackPanel VerticalAlignment="Bottom" Background="Blue">
+                <StackPanel Margin="0" VerticalAlignment="Bottom">
                     <Separator
                         Height="1"
                         Margin="40,285,40,0"
