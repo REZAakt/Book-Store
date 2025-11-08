@@ -30,34 +30,7 @@ namespace wpf
             CustomerListView.ItemsSource = customers;
             ProductListView.ItemsSource = products;
 
-            //SetBackgrounds(EmployeeListView);
-            //SetBackgrounds(CustomeListView);
-            //SetBackgrounds(ProductListView);
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    employees.Add(new Employee()
-            //    {
-            //        FirstName = i.ToString(),
-            //    });
-            //}
         }
-
-        //private void SetBackgrounds(ListView ListView)
-        //{
-        //    ListView.L += (sender, e) =>
-        //    {
-        //        var row = e.row;
-        //        if (row.getindex() % 2 == 0)
-        //        {
-        //            row.background = new solidcolorbrush(colors.whitesmoke);
-        //        }
-        //        else
-        //        {
-        //            row.background = new solidcolorbrush(colors.lightgray);
-        //        }
-        //    };
-        //}
 
         private void FillData()
         {

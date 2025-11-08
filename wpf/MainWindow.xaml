@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="BookShop"
     Width="1200"
     Height="900"
@@ -109,7 +110,7 @@
                                             BlurRadius="10"
                                             RenderingBias="Quality"
                                             ShadowDepth="-10"
-                                            Color="#E91E63" />
+                                            Color="#590094" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -144,7 +145,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Source="resources/Logo.png" />
-                <Label
+                <ui:TextBlock
                     Height="74"
                     Margin="0,0,0,200"
                     HorizontalAlignment="Center"
@@ -152,29 +153,25 @@
                     FontFamily="Arial"
                     FontSize="70"
                     FontWeight="Bold"
-                    Foreground="#E91E63">
-                    Book Store
-                </Label>
-                <Label
+                    Foreground="#E91E63"
+                    Text="Book Store" />
+                <ui:TextBlock
                     Height="36"
-                    Margin="0,0,0,80"
+                    Margin="0,20,0,80"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    HorizontalContentAlignment="Left"
-                    VerticalContentAlignment="Center"
                     FontFamily="Arial"
                     FontSize="15"
                     FontWeight="Bold"
-                    Foreground="#FFFFFF">
-                    Demo Application For BookShop
-                </Label>
-                <!--<Separator
+                    Foreground="#FFFFFF"
+                    Text=" Demo Application For BookShop" />
+                <Separator
                     Grid.Row="1"
-                    Height="1"
-                    Margin="40,0,40,135"
+                    Height="58"
+                    Margin="15,0,15,54"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Bottom"
-                    Background="White" />-->
+                    Background="White" />
 
                 <StackPanel
                     Margin="0,0,0,55"
@@ -230,32 +227,32 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <ListView
+                <ui:ListView
                     x:Name="EmployeeListView"
                     Grid.Row="0"
                     Margin="20,20,25,0"
-                    Background="White"
-                    Foreground="Black"
+                    Background="#08091c"
+                    Foreground="White"
                     SelectionChanged="EmployeeListViewSelectionChange">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn>
-                                <GridViewColumn.Header>
+                    <ui:ListView.View>
+                        <ui:GridView>
+                            <ui:GridViewColumn Width="100">
+                                <ui:GridViewColumn.Header>
                                     <TextBlock
-                                        Width="auto"
+                                        Width="250"
                                         Height="auto"
                                         Text="FirstName" />
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
+                                </ui:GridViewColumn.Header>
+                                <ui:GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding FirstName}" />
                                     </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn>
+                                </ui:GridViewColumn.CellTemplate>
+                            </ui:GridViewColumn>
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
-                                        Width="auto"
+                                        Width="200"
                                         Height="auto"
                                         Text="LastName" />
                                 </GridViewColumn.Header>
@@ -265,10 +262,10 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="150">
                                 <GridViewColumn.Header>
                                     <TextBlock
-                                        Width="auto"
+                                        Width="200"
                                         Height="auto"
                                         Text="PhoneNumber" />
                                 </GridViewColumn.Header>
@@ -278,10 +275,10 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
-                                        Width="auto"
+                                        Width="200"
                                         Height="auto"
                                         Text="Address" />
                                 </GridViewColumn.Header>
@@ -291,10 +288,10 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
-                                        Width="auto"
+                                        Width="200"
                                         Height="auto"
                                         Text="BaseSalary" />
                                 </GridViewColumn.Header>
@@ -304,10 +301,10 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
-                                        Width="auto"
+                                        Width="200"
                                         Height="auto"
                                         Text="Department" />
                                 </GridViewColumn.Header>
@@ -317,7 +314,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="150">
                                 <GridViewColumn.Header>
                                     <TextBlock Text="Opertion" />
                                 </GridViewColumn.Header>
@@ -338,7 +335,7 @@
                                                 Width="40"
                                                 Height="25"
                                                 Margin="3,3,4,3"
-                                                Background="#181929"
+                                                Background="#269BB6"
                                                 Click="Employee_edit"
                                                 CommandParameter="{Binding}"
                                                 Content="Edit"
@@ -348,9 +345,9 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                        </ui:GridView>
+                    </ui:ListView.View>
+                </ui:ListView>
                 <WrapPanel Grid.Row="1" Margin="20">
                     <Label
                         Margin="10"
@@ -398,29 +395,29 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <ListView
+                <ui:ListView
                     x:Name="CustomerListView"
                     Grid.Row="0"
                     Margin="20,20,25,0"
-                    Background="White"
-                    Foreground="Black"
+                    Background="#181929"
+                    Foreground="White"
                     SelectionChanged="CustomerListViewSelectionChange">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn>
-                                <GridViewColumn.Header>
+                    <ui:ListView.View>
+                        <ui:GridView>
+                            <ui:GridViewColumn Width="100">
+                                <ui:GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
                                         Height="auto"
                                         Text="FirstName" />
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
+                                </ui:GridViewColumn.Header>
+                                <ui:GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding FirstName}" />
                                     </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn>
+                                </ui:GridViewColumn.CellTemplate>
+                            </ui:GridViewColumn>
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -433,7 +430,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="150">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -446,7 +443,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -459,7 +456,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="150">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -483,7 +480,7 @@
                                                 Width="40"
                                                 Height="25"
                                                 Margin="3,3,4,3"
-                                                Background="#181929"
+                                                Background="#269BB6"
                                                 Click="customer_edit"
                                                 CommandParameter="{Binding}"
                                                 Content="Edit"
@@ -493,9 +490,9 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                        </ui:GridView>
+                    </ui:ListView.View>
+                </ui:ListView>
 
                 <WrapPanel Grid.Row="1" Margin="20">
                     <Label
@@ -545,29 +542,29 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <ListView
+                <ui:ListView
                     x:Name="ProductListView"
                     Grid.Row="0"
                     Margin="20,20,25,0"
-                    Background="White"
-                    Foreground="Black"
+                    Background="#181929"
+                    Foreground="White"
                     SelectionChanged="ProductListViewSelectionChange">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn>
-                                <GridViewColumn.Header>
+                    <ui:ListView.View>
+                        <ui:GridView>
+                            <ui:GridViewColumn Width="100">
+                                <ui:GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
                                         Height="auto"
                                         Text="Name" />
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
+                                </ui:GridViewColumn.Header>
+                                <ui:GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" />
                                     </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn>
+                                </ui:GridViewColumn.CellTemplate>
+                            </ui:GridViewColumn>
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -580,7 +577,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -593,7 +590,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="150">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -606,7 +603,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
+                            <GridViewColumn Width="150">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -630,7 +627,7 @@
                                                 Width="40"
                                                 Height="25"
                                                 Margin="3,3,4,3"
-                                                Background="#181929"
+                                                Background="#269BB6"
                                                 Click="product_edit"
                                                 CommandParameter="{Binding}"
                                                 Content="Edit"
@@ -640,9 +637,9 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                        </ui:GridView>
+                    </ui:ListView.View>
+                </ui:ListView>
 
                 <WrapPanel Grid.Row="1" Margin="20">
                     <Label
@@ -684,83 +681,90 @@
             Margin="2"
             HorizontalAlignment="Center"
             Background="#08091c">
-            <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
                 <Image
+                    Grid.Row="0"
                     Width="200"
                     Height="150"
                     Margin="10,40,10,30"
                     Source="resources/Logo.png" />
+                <StackPanel Grid.Row="1">
+                    <RadioButton
+                        Name="btnHome"
+                        Margin="20,0,20,2"
+                        Click="btnHome_Click"
+                        IsChecked="True"
+                        Style="{StaticResource ButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,10,0"
+                                Source="resources/home.png" />
+                            <TextBlock VerticalAlignment="Center" Text="Home" />
+                        </StackPanel>
+                    </RadioButton>
 
-                <RadioButton
-                    Name="btnHome"
-                    Margin="20,40,20,2"
-                    Click="btnHome_Click"
-                    Style="{StaticResource ButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image
-                            Width="20"
-                            Height="20"
-                            Margin="0,0,10,0"
-                            Source="resources/home.png" />
-                        <TextBlock VerticalAlignment="Center" Text="Home" />
-                    </StackPanel>
-                </RadioButton>
+                    <RadioButton
+                        Name="btnEmployees"
+                        Margin="20,10,20,2"
+                        Click="btnEmployees_Click"
+                        Style="{StaticResource ButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,10,0"
+                                Source="resources/employee.png" />
+                            <TextBlock VerticalAlignment="Center" Text="Employees" />
+                        </StackPanel>
+                    </RadioButton>
 
-                <RadioButton
-                    Name="btnEmployees"
-                    Margin="20,10,20,2"
-                    Click="btnEmployees_Click"
-                    Style="{StaticResource ButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image
-                            Width="20"
-                            Height="20"
-                            Margin="0,0,10,0"
-                            Source="resources/employee.png" />
-                        <TextBlock VerticalAlignment="Center" Text="Employees" />
-                    </StackPanel>
-                </RadioButton>
+                    <RadioButton
+                        Name="btnCustomers"
+                        Margin="20,10,20,2"
+                        Click="btnCustomers_Click"
+                        Style="{StaticResource ButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,10,0"
+                                Source="resources/customer.png" />
+                            <TextBlock VerticalAlignment="Center" Text="Customers" />
+                        </StackPanel>
+                    </RadioButton>
 
-                <RadioButton
-                    Name="btnCustomers"
-                    Margin="20,10,20,2"
-                    Click="btnCustomers_Click"
-                    Style="{StaticResource ButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image
-                            Width="20"
-                            Height="20"
-                            Margin="0,0,10,0"
-                            Source="resources/customer.png" />
-                        <TextBlock VerticalAlignment="Center" Text="Customers" />
-                    </StackPanel>
-                </RadioButton>
+                    <RadioButton
+                        Name="btnProducts"
+                        Margin="20,10,20,2"
+                        Click="btnProducts_Click"
+                        Style="{StaticResource ButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,10,0"
+                                Source="resources/product.png" />
+                            <TextBlock VerticalAlignment="Center" Text="Products" />
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
 
-                <RadioButton
-                    Name="btnProducts"
-                    Margin="20,10,20,2"
-                    Click="btnProducts_Click"
-                    Style="{StaticResource ButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image
-                            Width="20"
-                            Height="20"
-                            Margin="0,0,10,0"
-                            Source="resources/product.png" />
-                        <TextBlock VerticalAlignment="Center" Text="Products" />
-                    </StackPanel>
-                </RadioButton>
-
-                <StackPanel Margin="0" VerticalAlignment="Bottom">
+                <StackPanel Grid.Row="2" Margin="0,0,0,0">
                     <Separator
-                        Height="1"
-                        Margin="40,285,40,0"
-                        VerticalAlignment="Bottom"
+                        Height="13"
+                        Margin="20,0,20,10"
                         Background="White" />
                     <RadioButton
                         Name="btnExit"
-                        Margin="0,40,1,1"
+                        Margin="0,30,0,10"
                         HorizontalAlignment="Center"
                         Click="btnExit_Click"
                         Style="{StaticResource ButtonStyle}">
@@ -775,7 +779,9 @@
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
+
         </Border>
+
     </Grid>
 </Window>
