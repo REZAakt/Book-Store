@@ -110,7 +110,7 @@
                                             BlurRadius="10"
                                             RenderingBias="Quality"
                                             ShadowDepth="-10"
-                                            Color="#590094" />
+                                            Color="#E91E63" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
