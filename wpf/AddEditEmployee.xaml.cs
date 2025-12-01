@@ -165,7 +165,7 @@ namespace wpf
             else if (Address.Contains("usa"))
             {
                 isValid = false;
-                MessageBox.Show("  NO NO NO usa  , you cant use this app if your Amrican , niggero  ");
+                MessageBox.Show("  NO NO NO usa  , you cant use this app if your Amrican , nigg  ");
                 tbAddress.BorderBrush = Brushes.Red;
             }
 

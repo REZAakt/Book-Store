@@ -208,7 +208,9 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Foreground="#E91E63">
-                    Copyright © 2025 Reza Akbarpour / Mohammad Allahgholipour
+                    Copyright © 2025 Reza Akbarpour 
+                    
+                    <!--/ Mohammad Allahgholipour-->
                 </Label>
 
             </Grid>
@@ -322,7 +324,7 @@
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Button
-                                                Width="40"
+                                                Width="50"
                                                 Height="25"
                                                 Margin="3,3,4,3"
                                                 Background="#E92E50"
@@ -332,7 +334,7 @@
                                                 FontSize="12"
                                                 Style="{StaticResource ButtonAddStyle}" />
                                             <Button
-                                                Width="40"
+                                                Width="50"
                                                 Height="25"
                                                 Margin="3,3,4,3"
                                                 Background="#269BB6"
@@ -467,7 +469,7 @@
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Button
-                                                Width="40"
+                                                Width="50"
                                                 Height="25"
                                                 Margin="3,3,4,3"
                                                 Background="#E92E50"
@@ -477,7 +479,7 @@
                                                 FontSize="12"
                                                 Style="{StaticResource ButtonAddStyle}" />
                                             <Button
-                                                Width="40"
+                                                Width="50"
                                                 Height="25"
                                                 Margin="3,3,4,3"
                                                 Background="#269BB6"
@@ -614,7 +616,7 @@
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Button
-                                                Width="40"
+                                                Width="50"
                                                 Height="25"
                                                 Margin="3,3,4,3"
                                                 Background="#E92E50"
@@ -624,7 +626,7 @@
                                                 FontSize="12"
                                                 Style="{StaticResource ButtonAddStyle}" />
                                             <Button
-                                                Width="40"
+                                                Width="50"
                                                 Height="25"
                                                 Margin="3,3,4,3"
                                                 Background="#269BB6"
