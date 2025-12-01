@@ -115,25 +115,31 @@ namespace wpf
             if (string.IsNullOrEmpty(Name))
             {
                 isValid = false;
-                MessageBox.Show("Name is invalid!");
+                //MessageBox.Show("Name is invalid!");
+                lblError.Content = "* Name is invalid! ";
+
                 tbName.BorderBrush = Brushes.Red;
             }
             else if (string.IsNullOrEmpty(Author))
             {
                 isValid = false;
-                MessageBox.Show("Author is invalid!");
+                //MessageBox.Show("Author is invalid!");
+                lblError.Content = "* Author is invalid! ";
                 tbAuthor.BorderBrush = Brushes.Red;
             }
             else if (!decimal.TryParse(Price, out decimal p))
             {
                 isValid = false;
-                MessageBox.Show("Price is invalid!");
+                //MessageBox.Show("Price is invalid!");
+                lblError.Content = "* Price is invalid! ";
                 tbPrice.BorderBrush = Brushes.Red;
             }
             else if (!UInt64.TryParse(Available, out ulong a))
             {
                 isValid = false;
-                MessageBox.Show("Available number is invalid!");
+                //MessageBox.Show("Available number is invalid!");
+                lblError.Content = "* Available number is invalid! ";
+
                 tbAvailable.BorderBrush = Brushes.Red;
             }
 

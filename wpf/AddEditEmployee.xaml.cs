@@ -142,14 +142,16 @@ namespace wpf
             if (string.IsNullOrEmpty(FirstName))
             {
                 isValid = false;
-                MessageBox.Show("   First name is Invalid !   ");
+                //MessageBox.Show("   First name is Invalid !   ");
                 tbFirstName.BorderBrush = Brushes.Red;
+                lblerorr.Content = "* First name can not be empty  ! ";
             }
 
             else if (string.IsNullOrEmpty(Lastname))
             {
                 isValid = false;
-                MessageBox.Show("   Last name is Invalid !   ");
+                lblerorr.Content = "* Last name can not be empty  ! ";
+                //MessageBox.Show("   Last name is Invalid !   ");
                 tbLastName.BorderBrush = Brushes.Red;
             }
 
@@ -159,27 +161,30 @@ namespace wpf
                 isValid = false;
                 //  MessageBox.Show("   Phone number is Invalid !   ");
                 //  tbPhoneNumber.BorderBrush = Brushes.Red;
-                lblerorr.Content = "  ** Phone number is incerrect  ! ";
+                lblerorr.Content = "* Phone number is incerrect  ! ";
             }
 
             else if (Address.Contains("usa"))
             {
                 isValid = false;
-                MessageBox.Show("  NO NO NO usa  , you cant use this app if your Amrican , nigg  ");
+                lblerorr.Content = "*  NO NO NO usa  , ";
+                //MessageBox.Show("  NO NO NO usa  , you cant use this app if your Amrican , nigg  ");
                 tbAddress.BorderBrush = Brushes.Red;
             }
 
             else if (Department < 0)
             {
                 isValid = false;
-                MessageBox.Show("   Please select a Department !  ");
+                //MessageBox.Show("   Please select a Department !  ");
+                lblerorr.Content = "* Please select a Department !  ";
+
                 comboDeparyment.BorderBrush = Brushes.Red;
             }
 
             else if (!decimal.TryParse(BaseSalary, out decimal b) || b > 100000000000000)
             {
                 isValid = false;
-                MessageBox.Show("   Salary is incerrect   ! ");
+                //MessageBox.Show("   Salary is incerrect   ! ");
                 tbSalary.BorderBrush = Brushes.Red;
                 lblerorr.Content = "  ** Salary is incerrect  ! ";
 

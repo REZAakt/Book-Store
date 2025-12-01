@@ -101,14 +101,16 @@ namespace wpf
             if (string.IsNullOrEmpty(FirstName))
             {
                 isValid = false;
-                MessageBox.Show("   First name is Invalid !   ");
+                //MessageBox.Show("   First name is Invalid !   ");
+                lblError.Content = "* First name is Invalid !   ";
                 tbFirstNamec.BorderBrush = Brushes.Red;
             }
 
             else if (string.IsNullOrEmpty(Lastname))
             {
                 isValid = false;
-                MessageBox.Show("   Last name is Invalid !   ");
+                //MessageBox.Show("   Last name is Invalid !   ");
+                lblError.Content = "* Last name is Invalid ! ";
                 tbLastNamec.BorderBrush = Brushes.Red;
             }
 
@@ -116,7 +118,8 @@ namespace wpf
             {
 
                 isValid = false;
-                 MessageBox.Show("   Phone number is Invalid !   ");
+                lblError.Content = "* Phone number is Invalid ! ";
+                //MessageBox.Show("   Phone number is Invalid !   ");
                  tbPhoneNumberc.BorderBrush = Brushes.Red;
                
             }
@@ -124,7 +127,8 @@ namespace wpf
             else if (Address.Contains("usa"))
             {
                 isValid = false;
-                MessageBox.Show("  no , nooo , god nooo ");
+                //MessageBox.Show("  no , nooo , god nooo ");
+                lblError.Content = "  no , nooo , god nooo";
                 tbAddressc.BorderBrush = Brushes.Red;
             }
 

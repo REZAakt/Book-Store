@@ -211,13 +211,9 @@ namespace wpf
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            var shutdownConfrim = new ShutdownConfrim();
+            shutdownConfrim.ShowDialog();
         }
-
-
-
-
-
 
         private void customer_edit(object sender, RoutedEventArgs e)
         {
