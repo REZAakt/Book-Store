@@ -92,15 +92,24 @@ namespace wpf
         {
 
             //Employee currentEmployee = EmployeeListView.SelectedItem as Employee;
+            var result = System.Windows.MessageBox.Show(
+             $"Do you want to delete this user ?",
+             "Confirm",
+             System.Windows.MessageBoxButton.YesNo,
+             MessageBoxImage.Warning);
 
-            Employee currentEmployee = ((sender as Button).CommandParameter as Employee);
-
-            if (currentEmployee != null)
+            if (result == System.Windows.MessageBoxResult.Yes)
             {
-                employeeDataAccess.RemoveEmployee(currentEmployee.Id);
-                employees.Remove(currentEmployee);
-                EmployeeLabel.Content = "---";
-                RefreshEmployees();
+
+                Employee currentEmployee = ((sender as Button).CommandParameter as Employee);
+
+                if (currentEmployee != null)
+                {
+                    employeeDataAccess.RemoveEmployee(currentEmployee.Id);
+                    employees.Remove(currentEmployee);
+                    EmployeeLabel.Content = "---";
+                    RefreshEmployees();
+                }
             }
         }
 
@@ -128,15 +137,23 @@ namespace wpf
         {
 
             //Customer currentCustomer = CustomerListView.SelectedItem as Customer;
+            var result = System.Windows.MessageBox.Show(
+              $"Do you want to delete this user ?",
+              "Confirm",
+              System.Windows.MessageBoxButton.YesNo,
+              MessageBoxImage.Warning);
 
-            Customer currentCustomer = ((sender as Button).CommandParameter as Customer);
-
-            if (currentCustomer != null)
+            if (result == System.Windows.MessageBoxResult.Yes)
             {
-                customerDataAccess.RemoveCustomer(currentCustomer.Id);
-                customers.Remove(currentCustomer);
-                CustomerLabel.Content = "---";
-                RefreshCustomers();
+                Customer currentCustomer = ((sender as Button).CommandParameter as Customer);
+
+                if (currentCustomer != null)
+                {
+                    customerDataAccess.RemoveCustomer(currentCustomer.Id);
+                    customers.Remove(currentCustomer);
+                    CustomerLabel.Content = "---";
+                    RefreshCustomers();
+                }
             }
         }
 
@@ -162,18 +179,25 @@ namespace wpf
 
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
         {
+            var result = System.Windows.MessageBox.Show(
+                  $"Do you want to delete this Book ?",
+                  "Confirm",
+                  System.Windows.MessageBoxButton.YesNo,
+                  MessageBoxImage.Warning);
 
-            //Product currentProduct = ProductListView.SelectedItem as Product;
-            Product currentProduct = ((sender as Button).CommandParameter as Product);
-
-            if (currentProduct != null)
+            if (result == System.Windows.MessageBoxResult.Yes)
             {
-                productDataAccess.RemoveProduct(currentProduct.Id);
-                products.Remove(currentProduct);
-                ProductLabel.Content = "---";
-                RefreshProducts();
-            }
+                //Product currentProduct = ProductListView.SelectedItem as Product;
+                Product currentProduct = ((sender as Button).CommandParameter as Product);
 
+                if (currentProduct != null)
+                {
+                    productDataAccess.RemoveProduct(currentProduct.Id);
+                    products.Remove(currentProduct);
+                    ProductLabel.Content = "---";
+                    RefreshProducts();
+                }
+            }
         }
 
         private void btnEditProduct_Click(object sender, RoutedEventArgs e)

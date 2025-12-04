@@ -35,7 +35,6 @@ namespace wpf
             customerDataAccess = cusDataAccess;
         }
 
-
         public AddEditCustomer(CustomerDataAccess cusDataAccess, Customer cus)
         {
             InitializeComponent();
