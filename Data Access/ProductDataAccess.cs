@@ -49,18 +49,22 @@ namespace Data_Access
                     {
                         while (reader.Read())
                         {
+                            var quantity = Convert.ToInt32(reader["Quantity"]);
+                            var unitPrice = Convert.ToDecimal(reader["Price"]);
+
                             var item = new CustomerPurchaseViewModel
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
                                 BookName = reader["Name"].ToString(),
                                 Author = reader["Author"].ToString(),
-                                Price = Convert.ToDecimal(reader["Price"]),
-                                Quantity = Convert.ToInt32(reader["Quantity"]),
+                                Price = unitPrice * quantity,
+                                Quantity = quantity,
                                 PurchaseDate = Convert.ToDateTime(reader["PurchaseDate"])
                             };
 
                             result.Add(item);
                         }
+
                     }
                 }
             }

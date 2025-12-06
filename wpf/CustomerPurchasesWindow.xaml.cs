@@ -35,5 +35,11 @@ namespace wpf
 
             PurchasesGrid.ItemsSource = _productDataAccess.GetPurchasesByCustomer(_customer.Id);
         }
+
+        private void btnCansel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
     }
 }
