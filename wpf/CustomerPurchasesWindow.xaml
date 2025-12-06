@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="CustomerPurchasesWindow"
-    Width="800"
-    Height="450"
+    Width="950"
+    Height="500"
     Background="#08091c"
     Icon="resources/bookshop2.png"
     ResizeMode="NoResize"
@@ -68,19 +68,19 @@
                     Binding="{Binding BookName}"
                     Header="Book" />
                 <DataGridTextColumn
-                    Width="150"
+                    Width="200"
                     Binding="{Binding Author}"
                     Header="Author" />
                 <DataGridTextColumn
-                    Width="80"
+                    Width="100"
                     Binding="{Binding Price}"
                     Header="Price" />
                 <DataGridTextColumn
-                    Width="80"
+                    Width="100"
                     Binding="{Binding Quantity}"
                     Header="Quantity" />
                 <DataGridTextColumn
-                    Width="150"
+                    Width="250"
                     Binding="{Binding PurchaseDate}"
                     Header="Date" />
             </ui:DataGrid.Columns>

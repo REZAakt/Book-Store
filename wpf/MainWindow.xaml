@@ -457,17 +457,26 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="200">
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
                                         Height="auto"
-                                        Text="Books" />
+                                        HorizontalAlignment="Center"
+                                        Text="History" />
                                 </GridViewColumn.Header>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <!--  این پراپرتی رو بعداً توی مدل Customer پر می‌کنیم  -->
-                                        <TextBlock Text="{Binding PurchasedBooks}" TextWrapping="Wrap" />
+                                        <Button
+                                            Width="60"
+                                            Height="25"
+                                            Margin="3,3,4,3"
+                                            Background="#8E44AD"
+                                            Click="btnShowCustomerBooks_Click"
+                                            CommandParameter="{Binding}"
+                                            Content="View"
+                                            FontSize="12"
+                                            Style="{StaticResource ButtonAddStyle}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -482,16 +491,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button
-                                                Width="60"
-                                                Height="25"
-                                                Margin="3,3,4,3"
-                                                Background="#8E44AD"
-                                                Click="btnShowCustomerBooks_Click"
-                                                CommandParameter="{Binding}"
-                                                Content="Books"
-                                                FontSize="12"
-                                                Style="{StaticResource ButtonAddStyle}" />
+
                                             <Button
                                                 Width="50"
                                                 Height="25"
@@ -587,7 +587,7 @@
                     SelectionChanged="ProductListViewSelectionChange">
                     <ui:ListView.View>
                         <ui:GridView>
-                            <ui:GridViewColumn Width="100">
+                            <ui:GridViewColumn Width="250">
                                 <ui:GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
