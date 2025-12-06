@@ -2,6 +2,7 @@
 using Data_Access.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -25,6 +26,16 @@ namespace wpf
         public MainWindow()
         {
             InitializeComponent();
+            var filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources", "Book.json");
+            if (File.Exists(filePath))
+            {
+                LottieView.FileName = filePath;
+                LottieView.PlayAnimation();
+            }
+            else
+            {
+                return;
+            }
             FillData();
             EmployeeListView.ItemsSource = employees;
             CustomerListView.ItemsSource = customers;

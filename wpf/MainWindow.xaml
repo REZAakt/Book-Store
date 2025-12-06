@@ -5,6 +5,7 @@
     xmlns:ComboType="clr-namespace:Data_Access;assembly=Data_Access"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:wpf"
+    xmlns:lottie="clr-namespace:LottieSharp.WPF;assembly=LottieSharp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="BookShop"
@@ -138,13 +139,22 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Background="#181929">
-                <Image
+                <lottie:LottieAnimationView
+                    x:Name="LottieView"
+                    Grid.Row="0"
+                    Width="260"
+                    Height="300"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    AutoPlay="True"
+                    RepeatCount="-1" />
+                <!--<Image
                     Width="260"
                     Height="300"
                     Margin="80,60,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Source="resources/Logo.png" />
+                    Source="resources/Logo.png" />-->
                 <ui:TextBlock
                     Height="74"
                     Margin="0,0,0,200"
