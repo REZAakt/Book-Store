@@ -11,7 +11,7 @@ namespace Data_Access.Models
         int Id { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        UInt64 PhoneNumber { get; set; }
+        string PhoneNumber { get; set; }
         string Address { get; set; }
        
         public string GetBasicInfo();

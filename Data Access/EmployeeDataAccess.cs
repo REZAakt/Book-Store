@@ -46,7 +46,7 @@ namespace Data_Access
                                 Id = Convert.ToInt32(reader["Id"]),
                                 FirstName = reader["FirstName"].ToString(),
                                 LastName = reader["LastName"].ToString(),
-                                PhoneNumber = Convert.ToUInt64(reader["PhoneNumber"]),
+                                PhoneNumber = reader["PhoneNumber"].ToString(),
                                 Address = reader["Address"].ToString(),
                                 Department = dept,
                                 BaseSalary = Convert.ToDecimal(reader["BaseSalary"]),

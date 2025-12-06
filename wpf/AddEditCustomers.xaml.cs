@@ -65,7 +65,7 @@ namespace wpf
                     {
                         FirstName = tbFirstNamec.Text,
                         LastName = tbLastNamec.Text,
-                        PhoneNumber = Convert.ToUInt64(tbPhoneNumberc.Text),
+                        PhoneNumber = tbPhoneNumberc.Text.ToString(),
                         Address = tbAddressc.Text,
                     };
 

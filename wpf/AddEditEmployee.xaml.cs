@@ -103,7 +103,7 @@ namespace wpf
                     {
                         FirstName = tbFirstName.Text,
                         LastName = tbLastName.Text,
-                        PhoneNumber = Convert.ToUInt64(tbPhoneNumber.Text),
+                        PhoneNumber = tbPhoneNumber.Text.ToString(),
                         Address = tbAddress.Text,
                         BaseSalary = Convert.ToDecimal(tbSalary.Text),
                         Department = (Department)comboDeparyment.SelectedIndex

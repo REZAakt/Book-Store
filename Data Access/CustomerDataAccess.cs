@@ -24,6 +24,42 @@ namespace Data_Access
             ReadCustomer();
         }
 
+        //private string GetCustomerPurchasedBooks(int customerId)
+        //{
+        //    List<string> bookNames = new List<string>();
+
+        //    using (OleDbConnection connection = new OleDbConnection(connectionString))
+        //    {
+        //        connection.Open();
+
+        //        string query = @"
+        //    SELECT p.Name
+        //    FROM CustomerPurchase cp
+        //    INNER JOIN Product p ON cp.ProductId = p.Id
+        //    WHERE cp.CustomerId = ?
+        //    ORDER BY cp.PurchaseDate DESC";
+
+        //        using (OleDbCommand command = new OleDbCommand(query, connection))
+        //        {
+        //            command.Parameters.AddWithValue("?", customerId);
+
+        //            using (OleDbDataReader reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    var name = reader["Name"]?.ToString();
+        //                    if (!string.IsNullOrWhiteSpace(name))
+        //                        bookNames.Add(name);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    // خروجی مثل: "Book 1, Book 2, Book 3"
+        //    return string.Join(", ", bookNames);
+        //}
+
+
         private void ReadCustomer()
         {
             Customers.Clear();
@@ -31,7 +67,7 @@ namespace Data_Access
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM Customer"; // Assuming the table name is Customer
+                string query = "SELECT * FROM Customer";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
                     using (OleDbDataReader reader = command.ExecuteReader())
@@ -43,9 +79,12 @@ namespace Data_Access
                                 Id = Convert.ToInt32(reader["Id"]),
                                 FirstName = reader["FirstName"].ToString(),
                                 LastName = reader["LastName"].ToString(),
-                                PhoneNumber = Convert.ToUInt64(reader["PhoneNumber"]),
+                                PhoneNumber = reader["PhoneNumber"].ToString(),
                                 Address = reader["Address"].ToString(),
                             };
+
+                            //cus.PurchasedBooks = GetCustomerPurchasedBooks(cus.Id);
+
                             Customers.Add(cus);
                         }
                     }

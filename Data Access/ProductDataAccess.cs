@@ -25,6 +25,50 @@ namespace Data_Access
             ReadProducts();
         }
 
+        public ObservableCollection<CustomerPurchaseViewModel> GetPurchasesByCustomer(int customerId)
+        {
+            var result = new ObservableCollection<CustomerPurchaseViewModel>();
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+            SELECT cp.Id, cp.Quantity, cp.PurchaseDate,
+                   p.Name, p.Author, p.Price
+            FROM CustomerPurchase cp
+            INNER JOIN Product p ON cp.ProductId = p.Id
+            WHERE cp.CustomerId = ?
+            ORDER BY cp.PurchaseDate DESC";
+
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("?", customerId);
+
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var item = new CustomerPurchaseViewModel
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                BookName = reader["Name"].ToString(),
+                                Author = reader["Author"].ToString(),
+                                Price = Convert.ToDecimal(reader["Price"]),
+                                Quantity = Convert.ToInt32(reader["Quantity"]),
+                                PurchaseDate = Convert.ToDateTime(reader["PurchaseDate"])
+                            };
+
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
         private void ReadProducts()
         {
             Products.Clear();
@@ -44,7 +88,7 @@ namespace Data_Access
                                 Id = Convert.ToInt32(reader["Id"]),
                                 Name = reader["Name"].ToString(),
                                 Author = reader["Author"].ToString(),
-                                Price = Convert.ToUInt64(reader["Price"]),
+                                Price = Convert.ToDecimal(reader["Price"]),
                                 AvailableCount = Convert.ToInt32(reader["AvailableCount"]),
                             };
                             Products.Add(pro);
@@ -53,6 +97,106 @@ namespace Data_Access
                 }
             }
         }
+
+        //public ObservableCollection<CustomerPurchaseViewModel> GetPurchasesByCustomer(int customerId)
+        //{
+        //    var result = new ObservableCollection<CustomerPurchaseViewModel>();
+
+        //    using (OleDbConnection connection = new OleDbConnection(connectionString))
+        //    {
+        //        connection.Open();
+
+        //        string query = @"
+        //    SELECT cp.Id, cp.Quantity, cp.PurchaseDate,
+        //           p.Name, p.Author, p.Price
+        //    FROM CustomerPurchase cp
+        //    INNER JOIN Product p ON cp.ProductId = p.Id
+        //    WHERE cp.CustomerId = ?
+        //    ORDER BY cp.PurchaseDate DESC";
+
+        //        using (OleDbCommand command = new OleDbCommand(query, connection))
+        //        {
+        //            command.Parameters.AddWithValue("?", customerId);
+
+        //            using (OleDbDataReader reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    var item = new CustomerPurchaseViewModel
+        //                    {
+        //                        Id = Convert.ToInt32(reader["Id"]),
+        //                        BookName = reader["Name"].ToString(),
+        //                        Author = reader["Author"].ToString(),
+        //                        Price = Convert.ToDecimal(reader["Price"]),
+        //                        Quantity = Convert.ToInt32(reader["Quantity"]),
+        //                        PurchaseDate = Convert.ToDateTime(reader["PurchaseDate"])
+        //                    };
+
+        //                    result.Add(item);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return result;
+        //}
+
+
+        public bool TryPurchaseProduct(int productId, int quantity, int customerId, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            if (quantity <= 0)
+            {
+                errorMessage = "Quantity must be greater than zero.";
+                return false;
+            }
+
+            Product product = Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+            {
+                errorMessage = "Selected book was not found.";
+                return false;
+            }
+
+            if (product.AvailableCount < quantity)
+            {
+                errorMessage = "Requested quantity is more than available stock.";
+                return false;
+            }
+
+            product.AvailableCount -= quantity;
+            SaveProduct(product);
+
+            SavePurchase(customerId, productId, quantity);
+
+            return true;
+        }
+
+        private void SavePurchase(int customerId, int productId, int quantity)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+
+                string insertQuery = @"
+            INSERT INTO CustomerPurchase
+                (CustomerId, ProductId, Quantity, PurchaseDate)
+            VALUES (?, ?, ?, ?)";
+
+                using (OleDbCommand command = new OleDbCommand(insertQuery, connection))
+                {
+                    // حتماً نوع پارامتر رو مشخص کن
+                    command.Parameters.Add("?", OleDbType.Integer).Value = customerId;
+                    command.Parameters.Add("?", OleDbType.Integer).Value = productId;
+                    command.Parameters.Add("?", OleDbType.Integer).Value = quantity;
+                    command.Parameters.Add("?", OleDbType.Date).Value = DateTime.Now;
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
 
         private void SaveProduct(Product pro)
         {

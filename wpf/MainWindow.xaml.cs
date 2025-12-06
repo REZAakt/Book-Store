@@ -310,6 +310,40 @@ namespace wpf
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
             e.Handled = true;
         }
+
+        private void btnBuyBook_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.CommandParameter is Customer customer)
+            {
+                var buyWindow = new BuyProductWindow(customer, productDataAccess)
+                {
+                    Owner = this
+                };
+
+                bool? result = buyWindow.ShowDialog();
+
+                if (result == true)
+                {
+                    RefreshProducts();
+
+                    RefreshCustomers();
+                }
+            }
+        }
+
+        private void btnShowCustomerBooks_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.CommandParameter is Customer customer)
+            {
+                var win = new CustomerPurchasesWindow(customer, productDataAccess)
+                {
+                    Owner = this
+                };
+
+                win.ShowDialog();
+            }
+        }
+
     }
 }
 

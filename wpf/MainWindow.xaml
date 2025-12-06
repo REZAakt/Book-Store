@@ -208,9 +208,8 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Foreground="#E91E63">
-                    Copyright © 2025 Reza Akbarpour 
-                    
-                    <!--/ Mohammad Allahgholipour-->
+                    Copyright © 2025 Reza Akbarpour
+                    <!--  / Mohammad Allahgholipour  -->
                 </Label>
 
             </Grid>
@@ -458,7 +457,22 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="150">
+                            <GridViewColumn Width="200">
+                                <GridViewColumn.Header>
+                                    <TextBlock
+                                        Width="auto"
+                                        Height="auto"
+                                        Text="Books" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--  این پراپرتی رو بعداً توی مدل Customer پر می‌کنیم  -->
+                                        <TextBlock Text="{Binding PurchasedBooks}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="250">
                                 <GridViewColumn.Header>
                                     <TextBlock
                                         Width="auto"
@@ -468,6 +482,16 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                Width="60"
+                                                Height="25"
+                                                Margin="3,3,4,3"
+                                                Background="#8E44AD"
+                                                Click="btnShowCustomerBooks_Click"
+                                                CommandParameter="{Binding}"
+                                                Content="Books"
+                                                FontSize="12"
+                                                Style="{StaticResource ButtonAddStyle}" />
                                             <Button
                                                 Width="50"
                                                 Height="25"
@@ -486,6 +510,16 @@
                                                 Click="customer_edit"
                                                 CommandParameter="{Binding}"
                                                 Content="Edit"
+                                                FontSize="12"
+                                                Style="{StaticResource ButtonAddStyle}" />
+                                            <Button
+                                                Width="50"
+                                                Height="25"
+                                                Margin="3,3,4,3"
+                                                Background="#27AE60"
+                                                Click="btnBuyBook_Click"
+                                                CommandParameter="{Binding}"
+                                                Content="Buy"
                                                 FontSize="12"
                                                 Style="{StaticResource ButtonAddStyle}" />
                                         </StackPanel>
