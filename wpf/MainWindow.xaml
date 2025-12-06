@@ -468,15 +468,19 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button
-                                            Width="60"
-                                            Height="25"
+                                            Width="40"
+                                            Height="40"
                                             Margin="3,3,4,3"
-                                            Background="#8E44AD"
+                                            Background="Transparent"
+                                            BorderThickness="0"
                                             Click="btnShowCustomerBooks_Click"
-                                            CommandParameter="{Binding}"
-                                            Content="View"
-                                            FontSize="12"
-                                            Style="{StaticResource ButtonAddStyle}" />
+                                            CommandParameter="{Binding}">
+                                            <ui:SymbolIcon
+                                                FontSize="20"
+                                                Foreground="Gold"
+                                                Symbol="History32" />
+                                        </Button>
+
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

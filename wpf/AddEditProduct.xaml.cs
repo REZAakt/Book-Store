@@ -91,7 +91,7 @@ namespace wpf
                     }
                     else
                     {
-                        pro.Id = productDataAccess.GetNextId();
+
                         productDataAccess.AddProduct(pro);
                     }
 
@@ -103,6 +103,7 @@ namespace wpf
                 }
             }
         }
+
 
         private bool CheckEmployeeValidity()
         {

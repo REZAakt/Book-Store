@@ -8,7 +8,7 @@
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="BuyProductWindow"
     Width="800"
-    Height="450"
+    Height="600"
     Background="#08091c"
     Icon="resources/bookshop2.png"
     ResizeMode="NoResize"
@@ -72,11 +72,11 @@
             SelectionMode="Single">
             <ui:DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="*"
+                    Width="auto"
                     Binding="{Binding Name}"
                     Header="Name" />
                 <DataGridTextColumn
-                    Width="*"
+                    Width="auto"
                     Binding="{Binding Author}"
                     Header="Author" />
                 <DataGridTextColumn
@@ -104,18 +104,18 @@
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <ui:TextBlock
-                Margin="0,0,5,0"
+                Margin="0,0,10,0"
                 VerticalAlignment="Center"
                 Foreground="White"
                 Text="Count:" />
             <TextBox
                 x:Name="txtQuantity"
                 Width="150"
-                Margin="0,0,10,0" />
+                Margin="0,0,50,0" />
             <ui:Button
                 Width="70"
                 Height="30"
-                Margin="0,0,5,0"
+                Margin="0,0,15,0"
                 Background="White"
                 Click="btnConfirm_Click"
                 CommandParameter="{Binding}"

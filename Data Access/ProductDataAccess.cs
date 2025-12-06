@@ -222,6 +222,8 @@ namespace Data_Access
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
+
+                // اول اینسرت
                 string insertQuery = "INSERT INTO Product (Name, Author, Price, AvailableCount) VALUES (?, ?, ?, ?)";
                 using (OleDbCommand command = new OleDbCommand(insertQuery, connection))
                 {
@@ -232,8 +234,20 @@ namespace Data_Access
 
                     command.ExecuteNonQuery();
                 }
+
+                // بعد گرفتن Id واقعی که Access تولید کرده
+                using (OleDbCommand idCommand = new OleDbCommand("SELECT @@IDENTITY", connection))
+                {
+                    object result = idCommand.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        // @@IDENTITY تو Access معمولاً به صورت decimal برمی‌گرده
+                        pro.Id = Convert.ToInt32(result);
+                    }
+                }
             }
         }
+
 
         private void DeleteProductFromDb(int id)
         {
@@ -251,9 +265,9 @@ namespace Data_Access
 
         public void AddProduct(Product pro)
         {
-            pro.Id = GetNextId();
+            // دیگه Id دستی نمی‌دیم
+            AddProductToDb(pro);   // این خودش pro.Id رو ست می‌کنه
             Products.Add(pro);
-            AddProductToDb(pro);
         }
 
         public void RemoveProduct(int Id)
@@ -277,9 +291,9 @@ namespace Data_Access
             }
         }
 
-        public int GetNextId()
-        {
-            return Products.Any() ? Products.Max(x => x.Id) + 1 : 1;
-        }
+        //public int GetNextId()
+        //{
+        //    return Products.Any() ? Products.Max(x => x.Id) + 1 : 1;
+        //}
     }
 }
